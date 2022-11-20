@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Layout from './components/layouts/main'
+import RouteList from './constants/routes'
+import { AuthTypes } from './constants/types'
+import ProtectedRoute from './utils/protectedRoute'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        {RouteList.map((route) =>
+          route.authLevel === AuthTypes.NORMAL ? (
+            <Route
+              path={route.path}
+              element={
+                <Layout type={route.layout}>
+                  <route.component />
+                </Layout>
+              }
+              key={route.key}
+            />
+          ) : (
+            <Route
+              element={
+                <ProtectedRoute authLevel={route.authLevel} pathName={route.path}>
+                  <Layout type={route.layout}>
+                    <route.component />
+                  </Layout>
+                </ProtectedRoute>
+              }
+              key={route.key}
+            />
+          )
+        )}
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
