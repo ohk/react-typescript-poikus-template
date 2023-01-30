@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
-import { AuthTypes, LayoutTypes } from '../constants/types'
+import { AuthTypes } from '../constants/types'
 import authState from '../managers/stateManager/authState'
 
 interface Props {

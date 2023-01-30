@@ -4,6 +4,16 @@ export enum LogTypes {
   error
 }
 
+export enum ThemeTypes {
+  DARK = 'dark',
+  LIGHT = 'light'
+}
+
+export enum ThemeManagerActionType {
+  SWITCH,
+  GET
+}
+
 export enum NetworkRequestTypes {
   GET = 'GET',
   POST = 'POST',
@@ -23,4 +33,9 @@ export enum AuthTypes {
 export enum LayoutTypes {
   AUTH,
   STANDART
+}
+
+export enum ButtonColorTypes {
+  PRIMARY,
+  SECONDARY
 }
